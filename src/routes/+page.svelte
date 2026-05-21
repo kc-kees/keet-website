@@ -20,11 +20,7 @@
                 De deuren staan open. Wat hier gebeurt, staat vanaf nu gewoon online. De vaste plek voor sterke verhalen en goeie muziek.
             </p>
 
-            <div class="flex flex-col sm:flex-row gap-4">
-                <a href="/over-ons" class="bg-zinc-900 hover:bg-amber-500 text-white hover:text-zinc-900 font-bold py-4 px-8 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 text-center">
-                    Het Smoelenboek
-                </a>
-            </div>
+    
         </div>
 
         <div class="relative w-full aspect-4/3 md:aspect-[1.3/1] lg:aspect-[1.4/1] flex items-center justify-center group">
