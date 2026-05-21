@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// Status als Enum: zo kun je nooit een typefout maken
+enum Status {
+  AANKOMEND
+  GEWEEST
+}
+
+model Uitje {
+  id           String   @id @default(uuid())
+  slug         String   @unique
+  titel        String
+  locatie      String
+  datum        String // Nu kun je echt op tijd sorteren
+  beschrijving String? // Het vraagteken maakt het veld optioneel
+  coverFoto    String? // Het vraagteken maakt het veld optioneel
+  status       Status   @default(AANKOMEND)
+  aangemaaktOp DateTime @default(now())
+}

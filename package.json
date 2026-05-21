@@ -22,11 +22,14 @@
 		"prettier": "^3.8.1",
 		"prettier-plugin-svelte": "^3.5.1",
 		"prettier-plugin-tailwindcss": "^0.7.2",
+		"prisma": "^6.19.3",
 		"svelte": "^5.55.2",
 		"tailwindcss": "^4.2.2",
 		"vite": "^8.0.7"
 	},
 	"dependencies": {
+		"@prisma/client": "^6.19.3",
+		"@supabase/supabase-js": "^2.106.1",
 		"clsx": "^2.1.1",
 		"svelte-motion": "^0.12.2",
 		"tailwind-merge": "^3.6.0"

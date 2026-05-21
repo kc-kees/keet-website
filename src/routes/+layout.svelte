@@ -8,6 +8,7 @@
     <a href="/over-ons" class="hover:text-amber-500 hover:-translate-y-1 transition-all">Over ons</a>
     <a href="/over-de-keet" class="hover:text-amber-500 hover:-translate-y-1 transition-all">Over de keet</a>
     <a href="/keet-regels" class="hover:text-amber-500 hover:-translate-y-1 transition-all">Keet regels</a>
+    <a href="/uitjes" class="hover:text-amber-500 hover:-translate-y-1 transition-all">Uitjes</a>
 </nav>
 
 {@render children()}
