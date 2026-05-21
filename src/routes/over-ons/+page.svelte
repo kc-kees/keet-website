@@ -6,49 +6,49 @@
             naam: "Kaylan",
             rol: "Tech & Bass",
             quote: "Zonder bas is er geen gas.",
-            foto: "/fotos/Kaylan.png", // Zet je eigen foto straks als 'kaylan.png' in static/fotos/
+            foto: "/fotos/mensen/Kaylan.png", // Zet je eigen foto straks als 'kaylan.png' in static/fotos/
             tags: ["Bassist", "Hatseflats Beheerder"]
         },
         {
             naam: "Martijn",
             rol: "moet nog in een rol krijgen",
             quote: "moet nog een quote verzinnen",
-            foto: "/fotos/Martijn.png", // Als je nog geen foto hebt, laat je dit leeg. Dan komt er een strakke placeholder!
+            foto: "/fotos/mensen/Martijn.png", // Als je nog geen foto hebt, laat je dit leeg. Dan komt er een strakke placeholder!
             tags: ["Sfeermaker", "Logistiek", "Sterke Verhalen"]
         },
         {
             naam: "Daimen",
             rol: "moet nog in een rol krijgen",
             quote: "moet nog een quote verzinnen",
-            foto: "/fotos/Daimen.png", // Als je nog geen foto hebt, laat je dit leeg. Dan komt er een strakke placeholder!
+            foto: "/fotos/mensen/Daimen.png", // Als je nog geen foto hebt, laat je dit leeg. Dan komt er een strakke placeholder!
             tags: ["Sfeermaker", "Logistiek", "Sterke Verhalen"]
         },
         {
             naam: "Cas",
             rol: "moet nog in een rol krijgen",
             quote: "moet nog een quote verzinnen",
-            foto: "/fotos/Cas.png", // Als je nog geen foto hebt, laat je dit leeg. Dan komt er een strakke placeholder!
+            foto: "/fotos/mensen/Cas.png", // Als je nog geen foto hebt, laat je dit leeg. Dan komt er een strakke placeholder!
             tags: ["Sfeermaker", "Logistiek", "Sterke Verhalen"]
         },
         {
             naam: "Hidde",
             rol: "moet nog in een rol krijgen",
             quote: "moet nog een quote verzinnen",
-            foto: "/fotos/Hidde.png", // Als je nog geen foto hebt, laat je dit leeg. Dan komt er een strakke placeholder!
+            foto: "/fotos/mensen/Hidde.png", // Als je nog geen foto hebt, laat je dit leeg. Dan komt er een strakke placeholder!
             tags: ["Sfeermaker", "Logistiek", "Sterke Verhalen"]
         },
         {
             naam: "Twan",
             rol: "moet nog in een rol krijgen",
             quote: "moet nog een quote verzinnen",
-            foto: "/fotos/Twan.png", // Als je nog geen foto hebt, laat je dit leeg. Dan komt er een strakke placeholder!
+            foto: "/fotos/mensen/Twan.png", // Als je nog geen foto hebt, laat je dit leeg. Dan komt er een strakke placeholder!
             tags: ["Sfeermaker", "Logistiek", "Sterke Verhalen"]
         },
         {
             naam: "Leon",
             rol: "moet nog in een rol krijgen",
             quote: "moet nog een quote verzinnen",
-            foto: "/fotos/Leon.png", // Als je nog geen foto hebt, laat je dit leeg. Dan komt er een strakke placeholder!
+            foto: "/fotos/mensen/Leon.png", // Als je nog geen foto hebt, laat je dit leeg. Dan komt er een strakke placeholder!
             tags: ["Sfeermaker", "Logistiek", "Sterke Verhalen"]
         }
     ];
