@@ -7,6 +7,7 @@
     <a href="/" class="hover:text-amber-500 hover:-translate-y-1 transition-all">Home</a>
     <a href="/over-ons" class="hover:text-amber-500 hover:-translate-y-1 transition-all">Over ons</a>
     <a href="/over-de-keet" class="hover:text-amber-500 hover:-translate-y-1 transition-all">Over de keet</a>
+    <a href="/keet-regels" class="hover:text-amber-500 hover:-translate-y-1 transition-all">Keet regels</a>
 </nav>
 
 {@render children()}
