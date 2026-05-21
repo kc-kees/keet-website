@@ -1,5 +1,6 @@
 {
 	"files.associations": {
 		"*.css": "tailwindcss"
-	}
+	},
+	"idf.currentSetup": "C:\\Users\\kcent\\esp\\v5.5.1\\esp-idf"
 }
