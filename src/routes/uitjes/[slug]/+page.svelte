@@ -3,12 +3,12 @@
     
     // Svelte 5 Runic data opvang
     let { data } = $props();
-    let uitje = data.uitje;
-
-    // LIGHTBOX STATE: Welke foto is momenteel groot in beeld? (Standaard null = geen foto)
+    
+    // DIT IS AANGEPAST: $derived zorgt dat hij ALTIJD live updatet zonder refresh!
+    let uitje = $derived(data.uitje);
+    
     let actieveFoto = $state(null);
 
-    // Functie om hem weer netjes te sluiten
     function sluitLightbox() {
         actieveFoto = null;
     }
@@ -103,18 +103,40 @@
                 
                 {#if uitje.fotos && uitje.fotos.length > 0}
                     {#each uitje.fotos as foto}
-                        <button 
-                            type="button"
-                            onclick={() => actieveFoto = foto.url}
-                            class="aspect-square w-full h-full bg-zinc-50 rounded-3xl border border-zinc-200 shadow-sm overflow-hidden relative group cursor-pointer p-0"
-                        >
-                            <img 
-                                src={foto.url} 
-                                alt="Album foto" 
-                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
-                            />
-                        </button>
-                    {/each}
+        <div class="aspect-square bg-zinc-50 rounded-3xl border border-zinc-200 shadow-sm overflow-hidden relative group">
+            
+            <form 
+                method="POST" 
+                action="?/delete" 
+                use:enhance 
+                class="absolute top-2 right-2 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+            >
+                <input type="hidden" name="fotoId" value={foto.id} />
+                <input type="hidden" name="fotoUrl" value={foto.url} />
+                <button 
+                    type="submit" 
+                    class="w-8 h-8 flex items-center justify-center bg-red-500/90 hover:bg-red-600 text-white rounded-full shadow-md transition-colors backdrop-blur-sm" 
+                    aria-label="Foto verwijderen" 
+                    onclick={(e) => { if(!confirm('Zeker weten dat je deze foto wilt verwijderen?')) e.preventDefault(); }}
+                >
+                    <span class="text-sm leading-none">🗑️</span>
+                </button>
+            </form>
+
+            <button 
+                type="button"
+                onclick={() => actieveFoto = foto.url}
+                class="w-full h-full p-0 cursor-pointer block"
+            >
+                <img 
+                    src={foto.url} 
+                    alt="Album foto" 
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                />
+            </button>
+
+        </div>
+    {/each}
                 {:else}
                     <div class="aspect-square bg-zinc-50/80 rounded-3xl border border-zinc-200/60 shadow-inner flex flex-col items-center justify-center text-center p-4">
                         <span class="text-2xl opacity-50 mb-2">👻</span>

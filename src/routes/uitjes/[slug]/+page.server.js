@@ -94,5 +94,45 @@ export const actions = {
 
         // Als de hele loop klaar is, ververs de pagina!
         return { success: true };
+    },
+
+
+    delete: async ({ request }) => {
+        const data = await request.formData();
+        const fotoId = data.get('fotoId');
+        const fotoUrl = data.get('fotoUrl');
+
+        if (!fotoId || !fotoUrl) {
+            return fail(400, { success: false, message: 'Missende gegevens' });
+        }
+
+        try {
+            // 1. Verwijder het bestand uit Supabase Storage
+            // De URL ziet eruit als: https://[...].supabase.co/storage/v1/object/public/uitjes-fotos/[bestandsnaam]
+            // We knippen de URL in stukjes bij elke '/' en pakken het allerlaatste stukje (de bestandsnaam).
+            const urlOnderdelen = fotoUrl.split('/');
+            const bestandsNaam = urlOnderdelen[urlOnderdelen.length - 1];
+
+            const { error: supabaseError } = await supabase.storage
+                .from('uitjes-fotos')
+                .remove([bestandsNaam]);
+
+            if (supabaseError) {
+                console.error("Kon foto niet uit Supabase verwijderen:", supabaseError);
+                // We returnen nog geen error, want we willen hem sws uit de Prisma database halen!
+            }
+
+            // 2. Verwijder de referentie uit je database
+            await prisma.albumFoto.delete({
+                where: { id: fotoId }
+            });
+
+            return { success: true };
+
+        } catch (error) {
+            console.error("Database fout bij verwijderen:", error);
+            return fail(500, { success: false, message: 'Fout bij verwijderen van de foto' });
+        }
+        return { success: true };
     }
 };
