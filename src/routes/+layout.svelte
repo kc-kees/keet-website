@@ -21,6 +21,8 @@
         <a href="/over-de-keet" class="hover:text-amber-500 hover:-translate-y-1 transition-all">Over de keet</a>
         <a href="/keet-regels" class="hover:text-amber-500 hover:-translate-y-1 transition-all">Keet regels</a>
         <a href="/uitjes" class="hover:text-amber-500 hover:-translate-y-1 transition-all">Uitjes</a>
+        <a href="/bussen" class="hover:text-amber-500 hover:-translate-y-1 transition-all">Bussen</a>
+
 
         {#if data.user}
             <div class="dropdown-container relative">
@@ -67,6 +69,7 @@
             {:else}
                 <a href="/inloggen" onclick={() => menuOpen = false}>Inloggen</a>
             {/if}
+            <a href="/bussen" onclick={() => menuOpen = false}>Bussen</a>
         </div>
     {/if}
 </nav>

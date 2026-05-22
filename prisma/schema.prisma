@@ -20,13 +20,13 @@ enum Status {
   GEWEEST
 }
 
-// 3. User model voor autorisatie met Magic Link velden
+// 3. User model: Puur en alleen voor wie mag inloggen
 model User {
   id    String @id @default(uuid())
   email String @unique
   rol   Role   @default(USER)
 
-  // Magic Link velden (optioneel gemaakt met ?, zodat ze leeg zijn als je niet inlogt)
+  // Magic Link velden
   loginToken     String?   @unique
   tokenExpiresAt DateTime?
 }
@@ -55,4 +55,11 @@ model AlbumFoto {
   // DE KOPPELING: We slaan het ID van het bijbehorende uitje op
   uitjeId String
   uitje   Uitje  @relation(fields: [uitjeId], references: [id], onDelete: Cascade)
+}
+
+// NIEUW & SCHOON: Eén centrale tabel voor iedereen op het leaderboard
+model Speler {
+  id          String @id @default(uuid())
+  naam        String @unique // Bijv. "Kaylan", "Sjoerd", etc.
+  bussenCount Int    @default(0)
 }
