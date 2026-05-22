@@ -88,7 +88,7 @@
                         </div>
                         <span class="text-[10px] md:text-xs font-black text-zinc-700 uppercase tracking-widest">Uploaden</span>
                         
-                        <input type="file" name="foto" accept="image/*" class="hidden" onchange={(e) => e.target.form.submit()} />
+                        <input type="file" name="foto" accept="image/*" multiple class="hidden" onchange={(e) => e.target.form.submit()} />
                     </label>
                 </form>
                 

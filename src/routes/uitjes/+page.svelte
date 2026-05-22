@@ -13,9 +13,7 @@
         
         <div class="mb-16 border-b border-zinc-100 pb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
             <div>
-                <a href="/" class="text-sm font-bold text-amber-600 hover:text-orange-600 uppercase tracking-wider inline-flex items-center gap-2 mb-4 transition-colors">
-                    ← Terug naar Home
-                </a>
+                
                 <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-4 text-zinc-900">
                     Hatseflats <span class="text-transparent bg-clip-text bg-linear-to-r from-amber-500 to-orange-600">On Tour</span>
                 </h1>

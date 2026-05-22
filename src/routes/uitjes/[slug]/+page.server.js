@@ -34,17 +34,20 @@ export const load = async ({ params }) => {
 
 // 2. DE ACTIONS (Handelt de upload-knop af)
 export const actions = {
-    // Dit is de "?/upload" actie uit je Svelte formulier
     upload: async ({ request, params }) => {
         const data = await request.formData();
-        const bestand = data.get('foto'); // Let op: in het formulier heet het veld 'foto'
+        
+        // DIT IS NIEUW: getAll haalt een lijst op van álle geselecteerde foto's
+        const bestanden = data.getAll('foto'); 
 
-        // Check of er daadwerkelijk een bestand is meegegeven
-        if (!bestand || bestand.name === 'undefined' || bestand.size === 0) {
-            return fail(400, { success: false, message: 'Geen geldig bestand geselecteerd' });
+        // Filter lege of ongeldige bestanden eruit
+        const geldigeBestanden = bestanden.filter(b => b.name && b.name !== 'undefined' && b.size > 0);
+
+        if (geldigeBestanden.length === 0) {
+            return fail(400, { success: false, message: 'Geen geldige bestanden geselecteerd' });
         }
 
-        // Stap A: Zoek het ID van dit specifieke uitje op basis van de URL (slug)
+        // Stap A: Zoek het uitje op basis van de URL
         const uitje = await prisma.uitje.findUnique({
             where: { slug: params.slug },
             select: { id: true }
@@ -54,39 +57,42 @@ export const actions = {
             return fail(404, { success: false, message: 'Uitje niet gevonden in de database' });
         }
 
-        // Stap B: Upload naar Supabase Storage
-        // We halen spaties en rare tekens uit de bestandsnaam voor de zekerheid
-        const schoneNaam = bestand.name.replace(/[^a-zA-Z0-9.-]/g, '');
-        const bestandsNaam = `${crypto.randomUUID()}-${schoneNaam}`;
-        
-        const { error: uploadError } = await supabase.storage
-            .from('uitjes-fotos') // We gebruiken dezelfde bucket als de coverfoto's
-            .upload(bestandsNaam, bestand);
+        // DIT IS NIEUW: We loopen door alle geselecteerde foto's heen!
+        for (const bestand of geldigeBestanden) {
+            
+            // Maak bestandsnaam schoon
+            const schoneNaam = bestand.name.replace(/[^a-zA-Z0-9.-]/g, '');
+            const bestandsNaam = `${crypto.randomUUID()}-${schoneNaam}`;
+            
+            // Upload naar Supabase
+            const { error: uploadError } = await supabase.storage
+                .from('uitjes-fotos') 
+                .upload(bestandsNaam, bestand);
 
-        if (uploadError) {
-            console.error("Upload mislukt:", uploadError);
-            return fail(500, { success: false, message: 'Foto uploaden naar cloud mislukt' });
+            if (uploadError) {
+                console.error(`Upload mislukt voor ${bestand.name}:`, uploadError);
+                continue; // Als er 1 foto mislukt, sla hem over en ga door met de rest!
+            }
+
+            // Haal de publieke URL op
+            const { data: publicUrlData } = supabase.storage
+                .from('uitjes-fotos')
+                .getPublicUrl(bestandsNaam);
+
+            // Sla op in Prisma
+            try {
+                await prisma.albumFoto.create({
+                    data: {
+                        url: publicUrlData.publicUrl,
+                        uitjeId: uitje.id 
+                    }
+                });
+            } catch (dbError) {
+                console.error(`Database fout voor ${bestand.name}:`, dbError);
+            }
         }
 
-        // Stap C: Haal de publieke URL op van Supabase
-        const { data: publicUrlData } = supabase.storage
-            .from('uitjes-fotos')
-            .getPublicUrl(bestandsNaam);
-
-        // Stap D: Sla de URL én de koppeling met het Uitje op in Prisma
-        try {
-            await prisma.albumFoto.create({
-                data: {
-                    url: publicUrlData.publicUrl,
-                    uitjeId: uitje.id // Hier leggen we de 1-op-N relatie!
-                }
-            });
-        } catch (dbError) {
-            console.error("Database fout:", dbError);
-            return fail(500, { success: false, message: 'Database opslag mislukt' });
-        }
-
-        // SvelteKit zal nu automatisch de pagina updaten met de nieuwe foto!
+        // Als de hele loop klaar is, ververs de pagina!
         return { success: true };
     }
 };
