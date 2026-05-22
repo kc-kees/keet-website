@@ -22,10 +22,12 @@
                 </p>
             </div>
 
-            <a href="/admin/nieuw-uitje" class="bg-zinc-900 hover:bg-amber-600 text-white px-6 py-3 rounded-xl font-bold text-sm uppercase tracking-wider transition-all shadow-lg hover:shadow-amber-500/20 flex items-center gap-2 self-start">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-                Nieuw Uitje Toevoegen
-            </a>
+            {#if data.user?.rol === 'ADMIN'}
+    <a href="/admin/nieuw-uitje" class="bg-zinc-900 hover:bg-amber-600 text-white px-6 py-3 rounded-xl font-bold text-sm uppercase tracking-wider transition-all shadow-lg hover:shadow-amber-500/20 flex items-center gap-2 self-start">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+        Nieuw Uitje Toevoegen
+    </a>
+{/if}
         </div>
 
         <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8">

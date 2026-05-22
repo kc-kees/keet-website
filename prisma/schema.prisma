@@ -8,10 +8,23 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-// Status als Enum: zo kun je nooit een typefout maken
+// 1. Rollen definitie
+enum Role {
+  USER
+  ADMIN
+}
+
+// 2. Status als Enum
 enum Status {
   AANKOMEND
   GEWEEST
+}
+
+// 3. User model voor autorisatie
+model User {
+  id    String @id @default(uuid())
+  email String @unique
+  rol   Role   @default(USER)
 }
 
 model Uitje {
@@ -19,9 +32,9 @@ model Uitje {
   slug         String   @unique
   titel        String
   locatie      String
-  datum        String // Nu kun je echt op tijd sorteren
-  beschrijving String? // Het vraagteken maakt het veld optioneel
-  coverFoto    String? // Het vraagteken maakt het veld optioneel
+  datum        String
+  beschrijving String?
+  coverFoto    String?
   status       Status   @default(AANKOMEND)
   aangemaaktOp DateTime @default(now())
 
@@ -32,8 +45,8 @@ model Uitje {
 // DE NIEUWE TABEL: Hier komen de URL's van je geüploade foto's in
 model AlbumFoto {
   id           String   @id @default(uuid())
-  url          String // De directe link naar Supabase Storage
-  toegevoegdOp DateTime @default(now()) // Handig om ze later op volgorde te zetten
+  url          String
+  toegevoegdOp DateTime @default(now())
 
   // DE KOPPELING: We slaan het ID van het bijbehorende uitje op
   uitjeId String

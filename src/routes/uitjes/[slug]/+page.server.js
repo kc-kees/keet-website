@@ -1,13 +1,13 @@
 import { createClient } from '@supabase/supabase-js';
 import { SUPABASE_URL, SUPABASE_SERVICE_KEY } from '$env/static/private';
-import prisma from '$lib/server/prisma';
+import { prisma } from '$lib/server/prisma';
 import { error, fail } from '@sveltejs/kit';
 
 // Initialiseer de Supabase client
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
 
 // 1. DE LOAD FUNCTIE (Haalt de data op voor de pagina)
-export const load = async ({ params }) => {
+export const load = async ({ params, locals }) => {
     const { slug } = params;
 
     const uitje = await prisma.uitje.findUnique({
@@ -28,7 +28,8 @@ export const load = async ({ params }) => {
     }
 
     return {
-        uitje
+        uitje,
+        user: locals.user // We geven de user ook door, zodat we in de Svelte file kunnen checken of ze admin zijn
     };
 };
 

@@ -1,17 +1,14 @@
 <script>
     import { enhance } from '$app/forms';
-    
-    // Svelte 5 Runic data opvang
     let { data } = $props();
     
-    // DIT IS AANGEPAST: $derived zorgt dat hij ALTIJD live updatet zonder refresh!
+    // We gebruiken nu data.user voor de permissies
     let uitje = $derived(data.uitje);
+    let user = $derived(data.user); // Pak de user uit de server-data
     
     let actieveFoto = $state(null);
-
-    function sluitLightbox() {
-        actieveFoto = null;
-    }
+    // ... rest van je script
+    function sluitLightbox() { actieveFoto = null; }
 </script>
 
 <svelte:window onkeydown={(e) => e.key === 'Escape' && sluitLightbox()} />
@@ -90,7 +87,7 @@
             </div>
             
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
-                
+                {#if user?.rol === 'ADMIN'}   
                 <form method="POST" action="?/upload" enctype="multipart/form-data" use:enhance class="aspect-square">
                     <label class="w-full h-full bg-zinc-50 rounded-3xl border-2 border-dashed border-zinc-300 flex flex-col items-center justify-center p-4 text-center cursor-pointer hover:border-orange-500 hover:bg-orange-50/30 transition-all group shadow-sm">
                         <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mb-3 shadow-md border border-zinc-100 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
@@ -100,11 +97,12 @@
                         <input type="file" name="foto" accept="image/*" multiple class="hidden" onchange={(e) => e.target.form.submit()} />
                     </label>
                 </form>
-                
+                {/if}
+
                 {#if uitje.fotos && uitje.fotos.length > 0}
                     {#each uitje.fotos as foto}
         <div class="aspect-square bg-zinc-50 rounded-3xl border border-zinc-200 shadow-sm overflow-hidden relative group">
-            
+            {#if user?.rol === 'ADMIN'}
             <form 
                 method="POST" 
                 action="?/delete" 
@@ -122,6 +120,7 @@
                     <span class="text-sm leading-none">🗑️</span>
                 </button>
             </form>
+            {/if}
 
             <button 
                 type="button"

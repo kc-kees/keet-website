@@ -14,6 +14,7 @@
         <a href="/over-de-keet" class="hover:text-amber-500 hover:-translate-y-1 transition-all">Over de keet</a>
         <a href="/keet-regels" class="hover:text-amber-500 hover:-translate-y-1 transition-all">Keet regels</a>
         <a href="/uitjes" class="hover:text-amber-500 hover:-translate-y-1 transition-all">Uitjes</a>
+        <a href="/inloggen" class="hover:text-amber-500 hover:-translate-y-1 transition-all">Inloggen</a>
     </div>
 
     <div class="md:hidden flex justify-between items-center p-4">
@@ -40,6 +41,7 @@
             <a href="/over-de-keet" onclick={() => menuOpen = false} class="hover:text-amber-500 transition-colors">Over de keet</a>
             <a href="/keet-regels" onclick={() => menuOpen = false} class="hover:text-amber-500 transition-colors">Keet regels</a>
             <a href="/uitjes" onclick={() => menuOpen = false} class="hover:text-amber-500 transition-colors">Uitjes</a>
+            <a href="/inloggen" onclick={() => menuOpen = false} class="hover:text-amber-500 transition-colors">Inloggen</a>
         </div>
     {/if}
 </nav>

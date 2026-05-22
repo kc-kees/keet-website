@@ -1,22 +1,26 @@
 import { createClient } from '@supabase/supabase-js';
 import { SUPABASE_URL, SUPABASE_SERVICE_KEY } from '$env/static/private';
 import prisma from '$lib/server/prisma';
-import { redirect } from '@sveltejs/kit';
+import { redirect, error } from '@sveltejs/kit'; // Voeg 'error' hier toe
 
-// Initialiseer de Supabase client voor server-side operaties
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
 
 export const actions = {
-    default: async ({ request }) => {
+    default: async ({ request, locals }) => { // 1. Voeg 'locals' toe
+        
+        // 2. DE ACHTERDEUR DICHT: Check of de gebruiker ADMIN is
+        if (!locals.user || locals.user.rol !== 'ADMIN') {
+            throw error(403, 'Alleen beheerders mogen nieuwe uitjes aanmaken!');
+        }
+
         const data = await request.formData();
         const bestand = data.get('afbeelding');
         
-        // 1. Upload het bestand naar Supabase Storage
-        // We gebruiken een unieke naam om conflicten te voorkomen
+        // ... (de rest van je bestaande code blijft gelijk)
         const bestandsNaam = `${crypto.randomUUID()}-${bestand.name}`;
         
         const { error: uploadError } = await supabase.storage
-            .from('uitjes-fotos') // Zorg dat deze bucketnaam exact klopt in je dashboard
+            .from('uitjes-fotos')
             .upload(bestandsNaam, bestand);
 
         if (uploadError) {
@@ -24,12 +28,10 @@ export const actions = {
             return { success: false, error: 'Foto uploaden mislukt' };
         }
 
-        // 2. Verkrijg de publieke URL van het geüploade bestand
         const { data: publicUrlData } = supabase.storage
             .from('uitjes-fotos')
             .getPublicUrl(bestandsNaam);
 
-        // 3. Sla de data op in je PostgreSQL database via Prisma
         try {
             await prisma.uitje.create({
                 data: {
@@ -37,7 +39,7 @@ export const actions = {
                     locatie: data.get('locatie'),
                     datum: data.get('datum'),
                     slug: data.get('titel').toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''),
-                    coverFoto: publicUrlData.publicUrl, // De link naar de cloud-foto
+                    coverFoto: publicUrlData.publicUrl,
                     beschrijving: "Nog geen beschrijving"
                 }
             });
@@ -46,7 +48,6 @@ export const actions = {
             return { success: false, error: 'Database opslag mislukt' };
         }
 
-        // 4. Succesvolle afronding
         throw redirect(303, '/uitjes');
     }
 };
