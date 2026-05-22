@@ -20,11 +20,15 @@ enum Status {
   GEWEEST
 }
 
-// 3. User model voor autorisatie
+// 3. User model voor autorisatie met Magic Link velden
 model User {
   id    String @id @default(uuid())
   email String @unique
   rol   Role   @default(USER)
+
+  // Magic Link velden (optioneel gemaakt met ?, zodat ze leeg zijn als je niet inlogt)
+  loginToken     String?   @unique
+  tokenExpiresAt DateTime?
 }
 
 model Uitje {
@@ -42,7 +46,7 @@ model Uitje {
   fotos AlbumFoto[]
 }
 
-// DE NIEUWE TABEL: Hier komen de URL's van je geüploade foto's in
+// DE TABEL: Hier komen de URL's van je geüploade foto's in
 model AlbumFoto {
   id           String   @id @default(uuid())
   url          String

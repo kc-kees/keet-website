@@ -1,8 +1,8 @@
 import { prisma } from '$lib/server/prisma';
-import { redirect } from '@sveltejs/kit';
+import { fail } from '@sveltejs/kit';
 
 export const actions = {
-    login: async ({ request, cookies }) => {
+    login: async ({ request, url }) => {
         const data = await request.formData();
         const email = data.get('email');
 
@@ -11,24 +11,41 @@ export const actions = {
             where: { email: email }
         });
 
-        // 2. Als de gebruiker gevonden is: cookie uitdelen
-        if (user) {
-            cookies.set('keet-sessie', user.id, {
-                path: '/',
-                httpOnly: true, // Veiligheid: niet leesbaar via JavaScript
-                maxAge: 60 * 60 * 24 * 7, // 1 week geldig
-                sameSite: 'strict',
-                secure: process.env.NODE_ENV === 'production' // Alleen over HTTPS in productie
+        if (!user) {
+            // Geef de foutmelding terug, net als in je oude code
+            return fail(404, { 
+                success: false, 
+                message: 'Dit e-mailadres staat niet in de lijst!' 
             });
-            
-            // 3. Stuur door naar de hoofdpagina
-            throw redirect(303, '/uitjes');
         }
 
-        // 4. Als niet gevonden: geef een duidelijke foutmelding terug
+        // 2. Gebruiker gevonden! Genereer een unieke token en verloopdatum (15 minuten)
+        const token = crypto.randomUUID();
+        const expires = new Date(Date.now() + 15 * 60 * 1000);
+
+        // 3. Sla de token op in de database bij deze specifieke gebruiker
+        await prisma.user.update({
+            where: { email: email },
+            data: {
+                loginToken: token,
+                tokenExpiresAt: expires
+            }
+        });
+
+        // 4. Maak de Magic Link aan (url.origin pakt automatisch je basis-URL zoals localhost:5173)
+        const magicLink = `${url.origin}/auth?token=${token}`;
+
+        // 5. SIMULATIE: Print de link in je terminal in plaats van een mail te sturen
+        console.log('\n======================================================');
+        console.log(`✉️  NIEUWE INLOG AANVRAAG VOOR: ${email}`);
+        console.log(`🔗 KLIK HIER OM IN TE LOGGEN:`);
+        console.log(magicLink);
+        console.log('======================================================\n');
+
+        // 6. Geef door aan je frontend (+page.svelte) dat de link is "verstuurd"
         return { 
-            success: false, 
-            message: 'Dit e-mailadres staat niet in de lijst!' 
+            success: true, 
+            message: 'Inloglink is aangemaakt! (Check de terminal waar SvelteKit draait)' 
         };
     }
 };

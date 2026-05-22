@@ -87,7 +87,7 @@
             </div>
             
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
-                {#if user?.rol === 'ADMIN'}   
+                {#if user?.rol === 'ADMIN' || user?.rol === 'USER'}   
                 <form method="POST" action="?/upload" enctype="multipart/form-data" use:enhance class="aspect-square">
                     <label class="w-full h-full bg-zinc-50 rounded-3xl border-2 border-dashed border-zinc-300 flex flex-col items-center justify-center p-4 text-center cursor-pointer hover:border-orange-500 hover:bg-orange-50/30 transition-all group shadow-sm">
                         <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mb-3 shadow-md border border-zinc-100 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
@@ -102,7 +102,7 @@
                 {#if uitje.fotos && uitje.fotos.length > 0}
                     {#each uitje.fotos as foto}
         <div class="aspect-square bg-zinc-50 rounded-3xl border border-zinc-200 shadow-sm overflow-hidden relative group">
-            {#if user?.rol === 'ADMIN'}
+            {#if user?.rol === 'ADMIN' || user?.rol === 'USER'}
             <form 
                 method="POST" 
                 action="?/delete" 
