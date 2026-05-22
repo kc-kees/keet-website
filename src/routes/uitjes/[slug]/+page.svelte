@@ -4,7 +4,17 @@
     // Svelte 5 Runic data opvang
     let { data } = $props();
     let uitje = data.uitje;
+
+    // LIGHTBOX STATE: Welke foto is momenteel groot in beeld? (Standaard null = geen foto)
+    let actieveFoto = $state(null);
+
+    // Functie om hem weer netjes te sluiten
+    function sluitLightbox() {
+        actieveFoto = null;
+    }
 </script>
+
+<svelte:window onkeydown={(e) => e.key === 'Escape' && sluitLightbox()} />
 
 <main class="min-h-screen bg-[#fafafa] text-zinc-900 pb-24 relative overflow-hidden font-sans antialiased">
     
@@ -87,20 +97,23 @@
                             <span class="text-xl">📸</span>
                         </div>
                         <span class="text-[10px] md:text-xs font-black text-zinc-700 uppercase tracking-widest">Uploaden</span>
-                        
                         <input type="file" name="foto" accept="image/*" multiple class="hidden" onchange={(e) => e.target.form.submit()} />
                     </label>
                 </form>
                 
                 {#if uitje.fotos && uitje.fotos.length > 0}
                     {#each uitje.fotos as foto}
-                        <div class="aspect-square bg-zinc-50 rounded-3xl border border-zinc-200 shadow-sm overflow-hidden relative group cursor-pointer">
+                        <button 
+                            type="button"
+                            onclick={() => actieveFoto = foto.url}
+                            class="aspect-square w-full h-full bg-zinc-50 rounded-3xl border border-zinc-200 shadow-sm overflow-hidden relative group cursor-pointer p-0"
+                        >
                             <img 
                                 src={foto.url} 
                                 alt="Album foto" 
                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
                             />
-                        </div>
+                        </button>
                     {/each}
                 {:else}
                     <div class="aspect-square bg-zinc-50/80 rounded-3xl border border-zinc-200/60 shadow-inner flex flex-col items-center justify-center text-center p-4">
@@ -114,3 +127,33 @@
 
     </div>
 </main>
+
+{#if actieveFoto}
+    <div 
+        class="fixed inset-0 z-50 flex items-center justify-center bg-zinc-950/95 backdrop-blur-md p-4 md:p-8 transition-opacity duration-300"
+        role="dialog"
+        aria-modal="true"
+    >
+        <button 
+            class="absolute inset-0 w-full h-full cursor-default" 
+            aria-label="Sluit lightbox"
+            onclick={sluitLightbox}
+        ></button>
+
+        <button 
+            class="absolute top-4 right-4 md:top-8 md:right-8 w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-orange-500 text-white rounded-full transition-all duration-300 z-50"
+            onclick={sluitLightbox}
+            aria-label="Sluiten"
+        >
+            <span class="text-3xl leading-none">&times;</span>
+        </button>
+
+        <div class="relative z-10 max-w-full max-h-full pointer-events-none">
+            <img 
+                src={actieveFoto} 
+                alt="Fullscreen album" 
+                class="max-w-full max-h-full object-contain rounded-xl shadow-2xl pointer-events-auto" 
+            />
+        </div>
+    </div>
+{/if}
