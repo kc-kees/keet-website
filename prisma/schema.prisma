@@ -24,4 +24,18 @@ model Uitje {
   coverFoto    String? // Het vraagteken maakt het veld optioneel
   status       Status   @default(AANKOMEND)
   aangemaaktOp DateTime @default(now())
+
+  // DE RELATIE: Eén uitje heeft een lijst (array) van meerdere foto's
+  fotos AlbumFoto[]
+}
+
+// DE NIEUWE TABEL: Hier komen de URL's van je geüploade foto's in
+model AlbumFoto {
+  id           String   @id @default(uuid())
+  url          String // De directe link naar Supabase Storage
+  toegevoegdOp DateTime @default(now()) // Handig om ze later op volgorde te zetten
+
+  // DE KOPPELING: We slaan het ID van het bijbehorende uitje op
+  uitjeId String
+  uitje   Uitje  @relation(fields: [uitjeId], references: [id], onDelete: Cascade)
 }
