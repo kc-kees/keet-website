@@ -57,22 +57,49 @@
                                 {:else} <span class="text-lg text-zinc-500">#{index + 1}</span> {/if}
                             </span>
                             
-                            <span class="text-zinc-950 truncate max-w-[120px] sm:max-w-[200px]">
+                            <span class="text-zinc-950 truncate max-w-30 sm:max-w-50">
                                 {speler.naam}
                             </span>
                         </div>
 
                         <div class="flex items-center gap-3">
-                            <div class="bg-orange-500 border-2 border-zinc-950 rounded-lg px-4 py-2 text-white font-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-center min-w-[3rem]">
+                            <div class="bg-orange-500 border-2 border-zinc-950 rounded-lg px-4 py-2 text-white font-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-center min-w-12">
                                 {speler.bussenCount}x
                             </div>
                             
                             {#if data.isIngelogd}
+                                <form method="POST" action="?/minEen" use:enhance>
+                                    <input type="hidden" name="id" value={speler.id} />
+                                    
+                                    <button type="submit" class="bg-zinc-200 text-zinc-950 h-10 w-10 flex items-center justify-center border-2 border-zinc-950 rounded-lg hover:bg-zinc-300 transition-all font-black text-xl shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none">
+                                        -
+                                    </button>
+                                </form>
+
                                 <form method="POST" action="?/plusEen" use:enhance>
                                     <input type="hidden" name="id" value={speler.id} />
                                     
                                     <button type="submit" class="bg-zinc-950 text-white h-10 w-10 flex items-center justify-center border-2 border-zinc-950 rounded-lg hover:bg-orange-500 hover:text-zinc-950 transition-all font-black text-xl shadow-[2px_2px_0px_0px_rgba(249,115,22,1)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none">
                                         +
+                                    </button>
+                                </form>
+                            {/if}
+
+                            {#if data.isAdmin}
+                                <form 
+                                    method="POST" 
+                                    action="?/verwijderSpeler" 
+                                    use:enhance 
+                                    onsubmit={(e) => { 
+                                        if (!confirm(`Weet je zeker dat je ${speler.naam} wilt verwijderen?`)) {
+                                            e.preventDefault();
+                                        }
+                                    }}
+                                >
+                                    <input type="hidden" name="id" value={speler.id} />
+                                    
+                                    <button type="submit" title="Verwijder {speler.naam}" class="bg-red-500 text-white h-10 w-10 flex items-center justify-center border-2 border-zinc-950 rounded-lg hover:bg-red-600 transition-all font-black text-xl shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none">
+                                        ✖
                                     </button>
                                 </form>
                             {/if}

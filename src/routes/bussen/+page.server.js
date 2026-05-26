@@ -2,28 +2,32 @@ import { prisma } from '$lib/server/prisma';
 import { fail } from '@sveltejs/kit';
 
 export const load = async ({ cookies }) => {
-    // 1. Check of de bezoeker is ingelogd (voor de knoppen)
     const sessie = cookies.get('keet-sessie');
     let isIngelogd = false;
+    let isAdmin = false;
 
     if (sessie) {
         const user = await prisma.user.findUnique({ where: { id: sessie } });
-        if (user) isIngelogd = true;
+        if (user) {
+            isIngelogd = true;
+            if (user.rol === 'ADMIN') {
+                isAdmin = true;
+            }
+        }
     }
 
-    // 2. Haal simpelweg alle spelers op en sorteer op score
     const spelers = await prisma.speler.findMany({
         orderBy: { bussenCount: 'desc' }
     });
 
     return { 
         spelers,
-        isIngelogd
+        isIngelogd,
+        isAdmin
     };
 };
 
 export const actions = {
-    // ACTIE 1: Een nieuwe speler toevoegen
     voegSpelerToe: async ({ request, cookies }) => {
         const sessie = cookies.get('keet-sessie');
         if (!sessie) return fail(401, { message: 'Niet toegestaan, je moet ingelogd zijn!' });
@@ -39,12 +43,10 @@ export const actions = {
             });
             return { success: true };
         } catch (error) {
-            // Foutmelding als je bijvoorbeeld twee keer "Kaylan" probeert toe te voegen
             return fail(400, { message: 'Deze speler staat al op het leaderboard!' });
         }
     },
 
-    // ACTIE 2: De teller met +1 verhogen
     plusEen: async ({ request, cookies }) => {
         const sessie = cookies.get('keet-sessie');
         if (!sessie) return fail(401, { message: 'Niet toegestaan!' });
@@ -54,10 +56,53 @@ export const actions = {
 
         if (!id) return fail(400, { message: 'Er is iets misgegaan.' });
 
-        // Update simpelweg de Speler tabel
         await prisma.speler.update({
             where: { id: id },
             data: { bussenCount: { increment: 1 } }
+        });
+
+        return { success: true };
+    },
+
+    // NIEUWE ACTIE: De teller met -1 verlagen (met ingebouwde 0-check)
+    minEen: async ({ request, cookies }) => {
+        const sessie = cookies.get('keet-sessie');
+        if (!sessie) return fail(401, { message: 'Niet toegestaan!' });
+
+        const data = await request.formData();
+        const id = data.get('id')?.toString();
+
+        if (!id) return fail(400, { message: 'Er is iets misgegaan.' });
+
+        // Haal eerst de huidige stand op om te checken of hij niet al op 0 staat
+        const speler = await prisma.speler.findUnique({ where: { id: id } });
+        
+        if (speler && speler.bussenCount > 0) {
+            await prisma.speler.update({
+                where: { id: id },
+                data: { bussenCount: { decrement: 1 } } // Prisma trucje voor -1
+            });
+        }
+
+        return { success: true };
+    },
+
+    verwijderSpeler: async ({ request, cookies }) => {
+        const sessie = cookies.get('keet-sessie');
+        if (!sessie) return fail(401, { message: 'Niet toegestaan!' });
+
+        const user = await prisma.user.findUnique({ where: { id: sessie } });
+        if (!user || user.rol !== 'ADMIN') {
+            return fail(403, { message: 'Alleen admins mogen spelers verwijderen!' });
+        }
+
+        const data = await request.formData();
+        const id = data.get('id')?.toString();
+
+        if (!id) return fail(400, { message: 'Geen speler geselecteerd.' });
+
+        await prisma.speler.delete({
+            where: { id: id }
         });
 
         return { success: true };
