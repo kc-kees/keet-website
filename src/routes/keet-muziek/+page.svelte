@@ -16,7 +16,18 @@
 
     <div class="bg-white border-4 border-zinc-950 rounded-3xl p-4 w-full max-w-2xl shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] relative z-10 transition-transform hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] duration-200">
         
-        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1z1lQuxtwZJ0RA9SWGIhNv?utm_source=generator" width="100%" height="400" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <iframe 
+                title="De Keet Spotify Playlist"
+                data-testid="embed-iframe" 
+                style="border-radius:12px" 
+                src="https://open.spotify.com/embed/playlist/1z1lQuxtwZJ0RA9SWGIhNv?utm_source=generator" 
+                width="100%" 
+                height="400" 
+                frameBorder="0" 
+                allowfullscreen="" 
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                loading="lazy">
+            </iframe>
         </div>
 
         
