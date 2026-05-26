@@ -63,3 +63,10 @@ model Speler {
   naam        String @unique // Bijv. "Kaylan", "Sjoerd", etc.
   bussenCount Int    @default(0)
 }
+
+model Regel {
+  id        String   @id @default(cuid())
+  titel     String
+  tekst     String
+  createdAt DateTime @default(now())
+}
