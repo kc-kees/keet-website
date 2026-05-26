@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { SUPABASE_URL, SUPABASE_SERVICE_KEY } from '$env/static/private';
-import prisma from '$lib/server/prisma';
+import { prisma } from '$lib/server/prisma';
 import { redirect, error } from '@sveltejs/kit'; // Voeg 'error' hier toe
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
