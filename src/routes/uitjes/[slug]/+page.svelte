@@ -30,8 +30,8 @@
 
         <div class="bg-white border border-zinc-100 rounded-[2.5rem] shadow-xl p-4 md:p-6 lg:p-8 flex flex-col md:flex-row gap-8 lg:gap-12 items-center md:items-stretch w-full">
             
-            <div class="flex-shrink-0 w-full md:w-[320px] lg:w-[360px]"> 
-                <div class="w-full h-[400px] lg:h-[450px] bg-zinc-50 border-2 border-zinc-100 rounded-[2rem] overflow-hidden relative shadow-inner">
+            <div class="shrink-0 w-full md:w-[320px] lg:w-90"> 
+                <div class="w-full h-100 lg:h-112.5 bg-zinc-50 border-2 border-zinc-100 rounded-4xl overflow-hidden relative shadow-inner">
                     <img 
                         src={uitje.coverFoto} 
                         alt={uitje.titel} 
@@ -41,18 +41,14 @@
                 </div>
             </div>
 
-            <div class="flex flex-col justify-center text-center md:text-left flex-grow py-4 px-2 md:px-0">
-                
-                <span class="text-orange-500 font-black tracking-[0.25em] text-xs uppercase mb-4 block">
-                    Custom Album
-                </span>
+            <div class="flex flex-col justify-center text-center md:text-left grow py-4 px-2 md:px-0">
                 
                 <h1 class="text-6xl md:text-7xl lg:text-8xl font-black text-zinc-950 uppercase tracking-tighter leading-none mb-6 drop-shadow-sm">
                     {uitje.titel}
                 </h1>
                 
                 <p class="text-zinc-500 text-base md:text-lg font-medium leading-relaxed max-w-xl mx-auto md:mx-0 mb-10">
-                    Alle beelden, sterke verhalen en herinneringen van dit legendarische uitje verzameld op één plek.
+                    Alle beelden en herinneringen van dit legendarische uitje verzameld op één plek.
                 </p>
 
                 <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 mt-auto border-t border-zinc-100 pt-8">
