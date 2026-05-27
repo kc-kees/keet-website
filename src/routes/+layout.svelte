@@ -1,5 +1,11 @@
 <script>
     import '../app.css';
+    import { dev } from '$app/environment';
+    import { inject } from '@vercel/analytics';
+
+    // Start de bezoeker-teller op de achtergrond
+    inject({ mode: dev ? 'development' : 'production' });
+
     let { data, children } = $props();
 
     let menuOpen = $state(false);
