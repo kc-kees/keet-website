@@ -9,7 +9,6 @@
     <section class="max-w-4xl mx-auto px-6 pt-16 relative z-10 w-full">
         
         <div class="mb-16 border-b border-zinc-100 pb-8">
-            
             <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-4 text-zinc-900">
                 De <span class="text-transparent bg-clip-text bg-linear-to-r from-amber-500 to-orange-600">Hatseflats</span> geschiedenis
             </h1>
@@ -28,7 +27,7 @@
                 <span class="font-mono text-sm font-bold text-amber-600 uppercase tracking-wider block mb-2">Hoofdstuk 1 // 2022 - 2024</span>
                 <h2 class="text-3xl font-black text-zinc-900 uppercase tracking-tight mb-4">De Romantiek van de Camper</h2>
                 <p class="mb-6">
-                    In 2022 begon het allemaal. Onze eerste officiële thuisbasis was een oude camper. Knus, compact en legendarisch. Twee jaar lang was dit de vaste ontmoetingsplek in Silvolde voor elke zaterdagavond. Maar met de week groeide de groep en de chaos, en kwamen we tot de onvermijdelijke conclusie: dit fantastische ding is simpelweg te klein geworden. Het was tijd voor groter geschut.
+                    In 2022 begon het allemaal. Onze eerste officiële thuisbasis was een oude camper. Knus, compact en legendarisch. Op 3 september 2022 zetten we de keet bovendien officieel op de digitale kaart met onze allereerste Instagram post. Twee jaar lang was dit de vaste ontmoetingsplek in Silvolde voor elke zaterdagavond. Maar met de week groeide de groep en de chaos, en kwamen we tot de onvermijdelijke conclusie: dit fantastische ding is simpelweg te klein geworden. Het was tijd voor groter geschut.
                 </p>
                 <div class="grid sm:grid-cols-2 gap-4 my-8">
                     <div class="bg-zinc-50 p-2 rounded-2xl border border-zinc-100 shadow-md transform -rotate-1 hover:rotate-0 transition-transform duration-300">
@@ -63,10 +62,13 @@
 
             <div class="border-l-4 border-zinc-900 pl-6 md:pl-8 relative">
                 <div class="absolute w-4 h-4 bg-zinc-900 rounded-full -left-2.5 top-2"></div>
+                
+                <div class="absolute -bottom-24 -left-1 w-1 h-24 bg-linear-to-b from-zinc-900 to-zinc-800"></div>
+
                 <span class="font-mono text-sm font-bold text-zinc-500 uppercase tracking-wider block mb-2">Hoofdstuk 3 // De Wederopbouw</span>
                 <h2 class="text-3xl font-black text-zinc-900 uppercase tracking-tight mb-4">De Aankomst van het Chalet</h2>
                 <p class="mb-6">
-                    En toen was het grote moment daar: het nieuwe chalet kwam aan op locatie. Een gigantisch ding vergeleken met de camper, maar er was direct werk aan de winkel. Een kant-en-klaar huisje is natuurlijk niks voor ons. We hebben de mouwen opgestroopt en zijn als een idioot gaan klussen om het van binnen en van buiten compleet naar onze eigen hand te zetten.
+                    En toen was het grote moment daar: het nieuwe chalet kwam aan op locatie. Een gigantisch ding vergeleken met de camper, maar er was direct werk aan de winkel. Een kant-en-klaar huisje is natuurlijk niks voor ons. We hebben de mouwen opgestroopt en zijn als een idioot gaan klussen om het van binnen en van buiten compleet naar onze eigen hand te zetten. Toen de verbouwing eindelijk klaar was, volgde de ultieme bekroning: de officiële opening van de nieuwe keet, met niemand minder dan de Achterhoekse legende Gerrit Vossers als speciale gast om de boel in te wijden!
                 </p>
                 
                 <div class="grid sm:grid-cols-2 gap-4 my-8">
@@ -81,7 +83,17 @@
                 </div>
             </div>
 
-            <div class="bg-zinc-50 border border-zinc-100 rounded-[2.5rem] p-8 md:p-12 text-center relative overflow-hidden shadow-xl">
+            <div class="border-l-4 border-zinc-800 pl-6 md:pl-8 relative">
+                <div class="absolute w-4 h-4 bg-zinc-800 rounded-full -left-2.5 top-2"></div>
+
+                <span class="font-mono text-sm font-bold text-zinc-500 uppercase tracking-wider block mb-2">Hoofdstuk 4 // Tradities</span>
+                <h2 class="text-3xl font-black text-zinc-900 uppercase tracking-tight mb-4">Vaste Prik & Bussen</h2>
+                <p class="mb-6">
+                    De locatie is flink geüpgraded, maar onze tradities staan als een huis. Zo is geen enkele zaterdagavond in de Hatseflats compleet zonder dat de kaarten op tafel komen voor minstens één genadeloos potje bussen. En als de onvermijdelijke honger halverwege de avond toeslaat? Dan is er maar één logische keuze: we bellen Kozan in Ulft. Onze absolute redding en de vaste leverancier van de keet.
+                </p>
+            </div>
+
+            <div class="bg-zinc-50 border border-zinc-100 rounded-[2.5rem] p-8 md:p-12 text-center relative overflow-hidden shadow-xl mt-16">
                 <div class="relative z-10">
                     <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100 mb-4 inline-block">
                         Status: Actief
@@ -95,22 +107,30 @@
 
         </div>
 
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-24 pt-12 border-t border-zinc-100 font-mono text-center">
-            <div class="bg-zinc-50 p-4 rounded-2xl border border-zinc-100">
-                <span class="block text-3xl font-black text-orange-600">2022</span>
-                <span class="text-xs uppercase tracking-wider text-zinc-500 font-bold">Start Camper</span>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 mt-24 pt-12 border-t border-zinc-100 font-mono text-center">
+            <div class="bg-zinc-50 p-4 rounded-2xl border border-zinc-100 hover:-translate-y-1 transition-transform">
+                <span class="block text-2xl font-black text-orange-600">3 SEPT</span>
+                <span class="text-[10px] uppercase tracking-wider text-zinc-500 font-bold">2022 Insta Start</span>
             </div>
-            <div class="bg-zinc-50 p-4 rounded-2xl border border-zinc-100">
-                <span class="block text-3xl font-black text-orange-600">Grolsch</span>
-                <span class="text-xs uppercase tracking-wider text-zinc-500 font-bold">Bier</span>
+            <div class="bg-zinc-50 p-4 rounded-2xl border border-zinc-100 hover:-translate-y-1 transition-transform">
+                <span class="block text-2xl font-black text-orange-600">Grolsch</span>
+                <span class="text-[10px] uppercase tracking-wider text-zinc-500 font-bold">Standaard Bier</span>
             </div>
-            <div class="bg-zinc-50 p-4 rounded-2xl border border-zinc-100">
-                <span class="block text-3xl font-black text-orange-600">Chalet</span>
-                <span class="text-xs uppercase tracking-wider text-zinc-500 font-bold">Nieuwe Stijl</span>
+            <div class="bg-zinc-50 p-4 rounded-2xl border border-zinc-100 hover:-translate-y-1 transition-transform">
+                <span class="block text-2xl font-black text-orange-600">Gerrit</span>
+                <span class="text-[10px] uppercase tracking-wider text-zinc-500 font-bold">Vossers Gast</span>
             </div>
-            <div class="bg-zinc-50 p-4 rounded-2xl border border-zinc-100">
-                <span class="block text-3xl font-black text-orange-600">Elke Zat.</span>
-                <span class="text-xs uppercase tracking-wider text-zinc-500 font-bold">Traditie</span>
+            <div class="bg-zinc-50 p-4 rounded-2xl border border-zinc-100 hover:-translate-y-1 transition-transform">
+                <span class="block text-2xl font-black text-orange-600">Kozan</span>
+                <span class="text-[10px] uppercase tracking-wider text-zinc-500 font-bold">Vaste Prik Ulft</span>
+            </div>
+            <div class="bg-zinc-50 p-4 rounded-2xl border border-zinc-100 hover:-translate-y-1 transition-transform">
+                <span class="block text-2xl font-black text-orange-600">Bussen</span>
+                <span class="text-[10px] uppercase tracking-wider text-zinc-500 font-bold">Elke Zaterdag</span>
+            </div>
+            <div class="bg-zinc-50 p-4 rounded-2xl border border-zinc-100 hover:-translate-y-1 transition-transform">
+                <span class="block text-2xl font-black text-orange-600">Chalet</span>
+                <span class="text-[10px] uppercase tracking-wider text-zinc-500 font-bold">Nieuwe Stijl</span>
             </div>
         </div>
 
