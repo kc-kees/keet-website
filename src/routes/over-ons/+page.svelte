@@ -4,52 +4,52 @@
     const leden = [
         {
             naam: "Kaylan",
-            rol: "Tech & Bass",
+            rol: "Bassist",
             quote: "Zonder bas is er geen gas.",
             foto: "/fotos/mensen/Kaylan.png", // Zet je eigen foto straks als 'kaylan.png' in static/fotos/
-            tags: ["Bassist", "Hatseflats Beheerder"]
+            tags: ["Bassist"]
         },
         {
             naam: "Martijn",
-            rol: "moet nog in een rol krijgen",
-            quote: "moet nog een quote verzinnen",
+            rol: "Locatie-Beheerder & Sfeermaker",
+            quote: "Een man zonder bier is als een keet zonder dak.",
             foto: "/fotos/mensen/Martijn.png", // Als je nog geen foto hebt, laat je dit leeg. Dan komt er een strakke placeholder!
-            tags: ["Sfeermaker", "Logistiek", "Sterke Verhalen"]
+            tags: ["Gastheer", "Bierkenner", "Levensgenieter"]
         },
         {
             naam: "Daimen",
-            rol: "moet nog in een rol krijgen",
-            quote: "moet nog een quote verzinnen",
+            rol: "Minister van Vloeibare Zaken",
+            quote: "Ik drink niet omdat ik dorst heb, ik drink omdat ik leef.",
             foto: "/fotos/mensen/Daimen.png", // Als je nog geen foto hebt, laat je dit leeg. Dan komt er een strakke placeholder!
-            tags: ["Sfeermaker", "Logistiek", "Sterke Verhalen"]
+            tags: ["Levensgenieter", "Niet te stoppen", "Eerste aan de bar"]
         },
         {
             naam: "Cas",
-            rol: "moet nog in een rol krijgen",
-            quote: "moet nog een quote verzinnen",
+            rol: "Megacrafter",
+            quote: "Lego bouwen en bier kouwen.",
             foto: "/fotos/mensen/Cas.png", // Als je nog geen foto hebt, laat je dit leeg. Dan komt er een strakke placeholder!
-            tags: ["Sfeermaker", "Logistiek", "Sterke Verhalen"]
+            tags: ["Lego-Master", "Bouwer", "Bierdrinker"]
         },
         {
             naam: "Hidde",
-            rol: "moet nog in een rol krijgen",
-            quote: "moet nog een quote verzinnen",
+            rol: "Boer & drummer",
+            quote: "Gewoon een blondje.",
             foto: "/fotos/mensen/Hidde.png", // Als je nog geen foto hebt, laat je dit leeg. Dan komt er een strakke placeholder!
-            tags: ["Sfeermaker", "Logistiek", "Sterke Verhalen"]
+            tags: ["Drummer", "Boerenzoon"]
         },
         {
             naam: "Twan",
-            rol: "moet nog in een rol krijgen",
-            quote: "moet nog een quote verzinnen",
+            rol: "De Rizzler",
+            quote: "Ik heb meer gezoend dan jij hebt geademd.",
             foto: "/fotos/mensen/Twan.png", // Als je nog geen foto hebt, laat je dit leeg. Dan komt er een strakke placeholder!
-            tags: ["Sfeermaker", "Logistiek", "Sterke Verhalen"]
+            tags: ["Rizz-master"]
         },
         {
             naam: "Leon",
-            rol: "moet nog in een rol krijgen",
-            quote: "moet nog een quote verzinnen",
+            rol: "De Vrije Denker",
+            quote: "Ik snap er niks van, maar ik doe het wel.",
             foto: "/fotos/mensen/Leon.png", // Als je nog geen foto hebt, laat je dit leeg. Dan komt er een strakke placeholder!
-            tags: ["Sfeermaker", "Logistiek", "Sterke Verhalen"]
+            tags: ["Onvoorspelbaar"]
         }
     ];
 </script>
