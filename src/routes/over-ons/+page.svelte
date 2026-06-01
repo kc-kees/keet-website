@@ -11,7 +11,7 @@
         },
         {
             naam: "Martijn",
-            rol: "Locatie-Beheerder & Sfeermaker",
+            rol: "Locatie-Beheerde",
             quote: "Een man zonder bier is als een keet zonder dak.",
             foto: "/fotos/mensen/Martijn.png", // Als je nog geen foto hebt, laat je dit leeg. Dan komt er een strakke placeholder!
             tags: ["Gastheer", "Bierkenner", "Levensgenieter"]
@@ -32,7 +32,7 @@
         },
         {
             naam: "Hidde",
-            rol: "Boer & drummer",
+            rol: "Boer",
             quote: "Gewoon een blondje.",
             foto: "/fotos/mensen/Hidde.png", // Als je nog geen foto hebt, laat je dit leeg. Dan komt er een strakke placeholder!
             tags: ["Drummer", "Boerenzoon"]
