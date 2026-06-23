@@ -107,7 +107,7 @@
 
         </div>
 
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 mt-24 pt-12 border-t border-zinc-100 font-mono text-center">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mt-24 pt-12 border-t border-zinc-100 font-mono text-center">
             <div class="bg-zinc-50 p-4 rounded-2xl border border-zinc-100 hover:-translate-y-1 transition-transform">
                 <span class="block text-2xl font-black text-orange-600">3 SEPT</span>
                 <span class="text-[10px] uppercase tracking-wider text-zinc-500 font-bold">2022 Insta Start</span>
