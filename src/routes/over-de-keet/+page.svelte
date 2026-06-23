@@ -117,10 +117,6 @@
                 <span class="text-[10px] uppercase tracking-wider text-zinc-500 font-bold">Standaard Bier</span>
             </div>
             <div class="bg-zinc-50 p-4 rounded-2xl border border-zinc-100 hover:-translate-y-1 transition-transform">
-                <span class="block text-2xl font-black text-orange-600">Gerrit</span>
-                <span class="text-[10px] uppercase tracking-wider text-zinc-500 font-bold">Vossers Gast</span>
-            </div>
-            <div class="bg-zinc-50 p-4 rounded-2xl border border-zinc-100 hover:-translate-y-1 transition-transform">
                 <span class="block text-2xl font-black text-orange-600">Kozan</span>
                 <span class="text-[10px] uppercase tracking-wider text-zinc-500 font-bold">Vaste Prik Ulft</span>
             </div>
